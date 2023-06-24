@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditional Rendering</title>
+            <script
+              crossorigin
+              src="https://unpkg.com/react@18/umd/react.development.js"
+            ></script>
+            <script
+              crossorigin
+              src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+            ></script>
+            <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        function App(){
+            let arr = [1,2,3,4,5]
+            let integer= true;
+            const jk = [
+                {
+                    name: "Ayushi",
+                    age: 24,
+                    mark: 44
+                },
+                {
+                    name: "Sahil",
+                    age: 23,
+                    mark: 45
+                },
+                {
+                    name: "Satyam",
+                    age: 26,
+                    mark: 46
+                }
+            ]
+
+            
+            
+            
+            return(
+                <>
+                <h1>Condition Rendering</h1>
+                {arr.map((i)=> <p>{i}</p>)}
+                <table border="5px">
+                {jk.map((i)=> <p>{i.name} {i.age} {i.mark}</p>)}
+                </table>
+                
+                
+                </>
+            )
+        }
+        const reactElement = ReactDOM.createRoot(document.getElementById("root"))
+        reactElement.render(<App />)
+    </script>
+</body>
+</html>
