@@ -22,14 +22,14 @@
         let wicket = 0;
         let ballWiseRes = [];  {/* form and array*/}
         let hit = 0;
-        let comment;
+        let inputRef= React.createRef();    //to take input value reference is used
        
         function addclick(num){
             
             // if(wicket < 10){
             // ballWiseRes.push(num);   {/* push the element in the array //// when we click the button it will get stored in ballWiseRes */}
             hit = num
-            score += num;
+            // score += num;
             rootElement.render(<App />);
             // console.log(ballWiseRes);
             // }
@@ -39,7 +39,7 @@
             // ballWiseRes.push("W");
             hit = "W"
             rootElement.render(<App />);
-            wicket += 1;
+            // wicket += 1;
             //console.log(ballWiseRes);
             //}
         }
@@ -65,7 +65,9 @@
                 {ballWiseRes.map((res, index) =>(
                     <>
                     {index %6 === 0? <br /> : null }
-                    <span key={index}>{res === 0? <strong>.</strong> : res}</span>&nbsp;&nbsp;&nbsp;</>))}
+                    <span key={index}>{res === 0? <strong>.</strong> : res}</span>&nbsp;&nbsp;&nbsp;
+                    </>
+                    ))}
                 
 
             </div>
@@ -74,15 +76,23 @@
 
         function handleSubmit(event){
             event.preventDefault();
+            if(hit == "W"){
+                wicket += 1;
+            }else{
+                score += hit;
+            }
 
-            ballWiseRes.unshift(hit);
+            ballWiseRes.unshift(
+                // <span>{hit}{","}{inputRef.current.value}</span>  // inputRef.current will take value and store in virtual DOM   //inputRef.current.value will take the value from input form and can be used to dispay anywhere
+                <span>{`${hit} , ${inputRef.current.value}`}</span>
+                );
             rootElement.render(<App />);
         }
 
         const Form = () => (
             <form onSubmit = {handleSubmit}>
             <input value = {hit}/>
-            <input value = {comment}/>
+            <input ref = {inputRef} placeholder="Add comment"/>
             <button>Submit</button>
             </form>
         )
